@@ -1,6 +1,6 @@
 # 7zDT
 ## Intro 简介
-For a long time, 7-Zip lacks the ability to add date/time to the archive's filename. We can only rename it after the archive is generated. This script will generate a window on the right side of 7-Zip's "Add to Archive" window, containing four buttons corresponding to four date/time naming methods, and will automatically generate the archive file when the button is clicked.
+For a long time, 7-Zip lacks the ability to add date/time to the archive's filename. We can only rename it after the archive is generated. This script will generate a window on the right side of 7-Zip's "Add to Archive" window, containing four buttons corresponding to four date/time naming methods. Archive files named with date/time will be automatically generated when the button is clicked.
 
 ***Tip for English Users:*** This script was written for 7-Zip Chinese language version, if you want to use it, search for `"添加到压缩包"` and replace them with `"Add to Archive"`
 
