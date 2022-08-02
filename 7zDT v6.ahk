@@ -11,8 +11,8 @@ Menu, Tray, Add, 退出, MenuHandler ;自定义系统托盘右键菜单
 7z: ;构建 GUI
     if WinExist("添加到压缩包")
     {
-        WinGetPos, Xpos, Ypos ;获取7z压缩界面的屏幕位置
-        Xpos2 := Xpos+625 ;横坐标设为7z压缩界面的最右边
+        WinGetPos, Xpos, Ypos, W7z ;获取7z压缩界面的屏幕位置及窗口宽度
+        Xpos2 := Xpos+W7z ;横坐标设为7z压缩界面的最右边
         Gui, Show, x%Xpos2% y%Ypos% h270 w170, 选择插入模式
         Gui, Add, Button, x30 y10 w110 h40 gDateBefore, ← 日期在前
         Gui, Font, c0066cc
