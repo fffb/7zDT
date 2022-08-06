@@ -150,8 +150,8 @@ MultiLanguage:
         slct := "Select Insert Mode"
         md1 := "Mode 1"
         md2 := "Mode 2"
-        md3 := "Mode 3 →"
-        md4 := "Mode 4 →"
+        md3 := "Mode 3"
+        md4 := "Mode 4"
         md5 := "Mode 5"
         md6 := "Mode 6"
     }
