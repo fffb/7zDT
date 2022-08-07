@@ -5,6 +5,10 @@ For a long time, 7-Zip lacks the ability to add date/time to the archive's filen
 长久以来，7-Zip 自身缺乏给压缩包文件名添加日期/时间的功能，只能在生成压缩包之后再重命名。本脚本会在 7-Zip 的“添加到压缩包”窗口右侧生成一个窗口，包含6个按钮，对应6种日期/时间命名方式，点击按钮后自动生成压缩包。
 
 ### History 更新记录
+>2022-08-08 v6.3.2\
+1.Imporved window detection method to prevent pop up on "Benchmark & compressing" window. 改进窗口检测办法，防止在“基准测试”和"正在压缩"界面出现\
+2.Improved sample text, showing the current date/time (sorry for not showing the filename, as the length is not controllable). 改进示例文字显示，显示当前日期时间（抱歉不显示文件名，因为长度不可控）\
+
 >2022-08-06 v6.3.0\
 1.Changed window detection method, now fits any language version of 7-Zip. 改变了窗口检测办法，现在适合任何语言版本的 7-Zip。\
 2.Multi-Language Support: Chinese & English. 多语言支持：中文、英语。
