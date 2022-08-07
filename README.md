@@ -7,7 +7,7 @@ For a long time, 7-Zip lacks the ability to add date/time to the archive's filen
 ### History 更新记录
 >2022-08-08 v6.3.2\
 1.Imporved window detection method to prevent pop up on "Benchmark & compressing" window. 改进窗口检测办法，防止在“基准测试”和"正在压缩"界面出现\
-2.Improved sample text, showing the current date/time (sorry for not showing the filename, as the length is not controllable). 改进示例文字显示，显示当前日期时间（抱歉不显示文件名，因为长度不可控）\
+2.Improved sample text, showing the current date/time (sorry for not showing the real filename, as the length is not controllable). 改进示例文字显示，显示当前日期时间（抱歉不显示真正文件名，因为长度不可控）\
 
 >2022-08-06 v6.3.0\
 1.Changed window detection method, now fits any language version of 7-Zip. 改变了窗口检测办法，现在适合任何语言版本的 7-Zip。\
