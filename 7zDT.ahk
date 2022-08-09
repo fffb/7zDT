@@ -19,6 +19,13 @@ ExitApp
 7z: 
     if WinExist("ahk_exe 7zG.exe")
     {
+        WinGet, 7zPath, ProcessPath , ahk_exe 7zG.exe ;检测 7zG 的版本，根据版本确定点击的按钮，因为22.0之后按钮名称变了
+        FileGetVersion, 7zVersion , %7zPath%
+        if 7zVersion in 22.0.0.0,22.1.0.0
+            BTN := "Button10"
+        else
+            BTN := "Button14"
+
         WinGetTitle, ATA, ahk_exe 7zG.exe
         ControlGet, OutputVar, Enabled ,, Edit1, %ATA% ;检测窗口是否包含 Edit1 控件，防止在“基准测试”等窗口也弹出
         if OutputVar = 1
@@ -69,9 +76,10 @@ Return
 Mode1:
     WinActivate, %ATA%
     ControlFocus, Edit1, %ATA%
-    Send {left}%A_YYYY%-%A_MM%-%A_DD%_
+    ControlGetText, filename, Edit1, %ATA%
+    Send %A_YYYY%-%A_MM%-%A_DD%_%filename%
     SetControlDelay -1 ;在 ControlClick 期间用户同时在使用鼠标时提高稳定性，不加本行下一行运行会出错
-    ControlClick, Button14, %ATA%
+    ControlClick, %BTN%, %ATA%
     Gui Destroy
     SetTimer, 7z
 Return
@@ -79,9 +87,10 @@ Return
 Mode2:
     WinActivate, %ATA%
     ControlFocus, Edit1, %ATA%
-    Send {left}%A_YYYY%%A_MM%%A_DD%_
+    ControlGetText, filename, Edit1, %ATA%
+    Send %A_YYYY%%A_MM%%A_DD%_%filename%
     SetControlDelay -1
-    ControlClick, Button14, %ATA%
+    ControlClick, %BTN%, %ATA%
     Gui Destroy
     SetTimer, 7z
 Return
@@ -94,7 +103,7 @@ Mode3:
     Send %name_no_ext%_%A_YYYY%-%A_MM%-%A_DD%.%ext%
     Sleep 500
     SetControlDelay -1
-    ControlClick, Button14, %ATA%
+    ControlClick, %BTN%, %ATA%
     Gui Destroy
     SetTimer, 7z
 Return
@@ -107,7 +116,7 @@ Mode4:
     Send %name_no_ext%_%A_YYYY%%A_MM%%A_DD%.%ext%
     Sleep 500
     SetControlDelay -1
-    ControlClick, Button14, %ATA%
+    ControlClick, %BTN%, %ATA%
     Gui Destroy
     SetTimer, 7z
 Return
@@ -120,7 +129,7 @@ Mode5:
     Send %name_no_ext%_%A_YYYY%-%A_MM%-%A_DD%_%A_Hour%%A_Min%%A_Sec%.%ext%
     Sleep 500
     SetControlDelay -1
-    ControlClick, Button14, %ATA%
+    ControlClick, %BTN%, %ATA%
     Gui Destroy
     SetTimer, 7z
 Return
@@ -133,7 +142,7 @@ Mode6:
     Send %name_no_ext%_%A_YYYY%%A_MM%%A_DD%_%A_Hour%%A_Min%%A_Sec%.%ext%
     Sleep 500
     SetControlDelay -1
-    ControlClick, Button14, %ATA%
+    ControlClick, %BTN%, %ATA%
     Gui Destroy
     SetTimer, 7z
 Return
@@ -143,7 +152,7 @@ MultiLanguage:
     {
         m_rl := "重载(&R)"
         m_tc := "退出(&X)"
-        slct := "选择插入模式"
+        slct := "选择模式"
         md1 := "← 日期在前 1"
         md2 := "← 日期在前 2"
         md3 := "日期在后 1 →"
