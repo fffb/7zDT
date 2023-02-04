@@ -22,4 +22,4 @@ For a long time, 7-Zip lacks the ability to add date/time to the archive's filen
 >2. Multi-Language Support: Chinese & English. 多语言支持：中文、英语。
 
 ## Screenshot 截图
-![image](https://github.com/fffb/7zDT/blob/main/screenshot.png)
+![image](https://github.com/fffb/7zDT/blob/main/screenshot.jpg)
