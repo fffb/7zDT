@@ -4,16 +4,23 @@ For a long time, 7-Zip lacks the ability to add date/time to the archive's filen
 
 长久以来，7-Zip 自身缺乏给压缩包文件名添加日期/时间的功能，只能在生成压缩包之后再重命名。本脚本会在 7-Zip 的“添加到压缩包”窗口右侧生成一个窗口，包含6个按钮，对应6种日期/时间命名方式，点击按钮后自动生成对应文件名。
 
-### History 更新记录  
+## Changelog 更新记录  
+2023-02-05 v1.1.0  (AHK v2)  
+>1. A new button has been added to help you revert to the original file name.  
+增加了一个按钮，以便恢复原文件名。  
+>2. Fix:  The "AutoStart" checkmark will now display correctly.  
+修复：退出后再次打开，托盘右键菜单“开机自启”框选显示不准确的问题。  
+>3. Code optimazation  
+代码优化：删除不影响运行结果的冗余代码。
+
 2023-02-04 v1.0.0  (AHK v2)
 >["AutoHotkey v2 has been released and will be considered the default/main version."](https://www.autohotkey.com/boards/viewtopic.php?f=24&t=112989)  
 >So 7zDT has been rewritten in AHK v2. Only 7zDT (AHK v2) will be updated in the future.  
 AutoHotkey v2 已发布，并将被视为默认/主版本。因此用 AHK v2 重写了 7zDT。未来只有 7zDT (AHK v2) 会继续更新。
->>changelog:
 >>1. Add: New tray menu "AutoStart" which allows you to start 7zDT on system startup.  
 >>系统托盘菜单添加“开机自启”，以便在系统启动后自动运行 7zDT。
 >>2. Remove: Archive files will no longer be created automatically. You should click the OK button manually.  
->>压缩文件将不再被自动创建。你应该手动点击 "确定 "按钮。
+>>压缩文件将不再被自动创建。你需要手动点击 "确定 "按钮。
 
 
 2022-08-09 v6.3.4
@@ -29,8 +36,10 @@ AutoHotkey v2 已发布，并将被视为默认/主版本。因此用 AHK v2 重
 改进示例文字显示，显示当前日期时间（抱歉不显示真正文件名，因为长度不可控）
 
 2022-08-06 v6.3.0
->1. Changed window detection method, now fits any language version of 7-Zip. 改变了窗口检测办法，现在适合任何语言版本的 7-Zip。
->2. Multi-Language Support: Chinese & English. 多语言支持：中文、英语。
+>1. Changed window detection method, now fits any language version of 7-Zip.  
+改变了窗口检测办法，现在适合任何语言版本的 7-Zip。
+>2. Multi-Language Support: Chinese & English.  
+多语言支持：中文、英语。
 
 ## Screenshot 截图
 ![image](https://github.com/fffb/7zDT/blob/main/screenshot.jpg)
