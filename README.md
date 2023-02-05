@@ -4,6 +4,9 @@ For a long time, 7-Zip lacks the ability to add date/time to the archive's filen
 
 长久以来，7-Zip 自身缺乏给压缩包文件名添加日期/时间的功能，只能在生成压缩包之后再重命名。本脚本会在 7-Zip 的“添加到压缩包”窗口右侧生成一个窗口，包含6个按钮，对应6种日期/时间命名方式，点击按钮后自动生成对应文件名。
 
+## Screenshot 截图
+![image](https://github.com/fffb/7zDT/blob/main/screenshot.jpg)
+
 ## Changelog 更新记录  
 2023-02-05 v1.1.0  (AHK v2)  
 >1. A new button has been added to help you revert to the original file name.  
@@ -40,6 +43,3 @@ AutoHotkey v2 已发布，并将被视为默认/主版本。因此用 AHK v2 重
 改变了窗口检测办法，现在适合任何语言版本的 7-Zip。
 >2. Multi-Language Support: Chinese & English.  
 多语言支持：中文、英语。
-
-## Screenshot 截图
-![image](https://github.com/fffb/7zDT/blob/main/screenshot.jpg)
