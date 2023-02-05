@@ -1,7 +1,4 @@
-﻿; v1.0.0
-;2023-01-30 准备转换到 AHK v2
-;2023-02-03 完成主体部分重写
-;2023-02-04 完成多语言支持，自定义托盘菜单及图标，加入开机自启功能
+﻿;2023-02-05 v1.1.0
 
 #SingleInstance Force
 ;;;;;;;;;;;;;;;;;;;;;;;;;多语言支持
@@ -17,6 +14,7 @@ if (A_Language = "0804")
     md4 := "模式 4"
     md5 := "模式 5"
     md6 := "模式 6"
+    md7 := "原始文件名"
 }
 Else
 {
@@ -30,14 +28,25 @@ Else
     md4 := "Mode 4"
     md5 := "Mode 5"
     md6 := "Mode 6"
+    md7 := "Original`nFilename"
 }
 ;;;;;;;;;;;;;;;;;;;;;;;自定义系统托盘图标及菜单
 TraySetIcon("7zDT.ico")
+A_IconTip := "7zDT"
 tray := A_TrayMenu
 tray.delete    ; 删除系统托盘标准菜单
 tray.add traymenu_st, AutoStart
 tray.add traymenu_rl, Rld
 tray.add traymenu_tc, TC
+
+If FileExist(A_Startup "\7zDT.lnk")
+{
+    Tray.Check(traymenu_st)
+}
+else
+{
+    Tray.Uncheck(traymenu_st)
+}
 
 AutoStart(*)
 {
@@ -75,7 +84,7 @@ main()
                 Xpos2 := Xpos + W7z    ;横坐标设为7z压缩界面的最右边
 
                 global MyGui := Gui("-SysMenu + ToolWindow", slct)    ;删除窗口左上角系统菜单和图标，及标题栏上的最小化最大化和关闭按钮，让窗口显示细标题栏, 同时去除任务栏按钮
-                MyGui.Show("x" Xpos2 "y" Ypos "h430 w190")
+                MyGui.Show("x" Xpos2 "y" Ypos "h485 w190")
                 MyGui.SetFont("c0066cc")
 
                 BTN1 := MyGui.AddButton("x40 y10 w110 h40", md1)
@@ -99,8 +108,13 @@ main()
                 BTN5.OnEvent("Click", Mode5)
 
                 BTN6 := MyGui.AddButton("x40 yp+25 w110 h40", md6)
-                MyGui.AddText("x12 yp+45 w170 h40", "filename_" A_YYYY A_MM A_DD "_" A_Hour A_Min A_Sec ".7z")
+                MyGui.AddText("x12 yp+45 w170 h30", "filename_" A_YYYY A_MM A_DD "_" A_Hour A_Min A_Sec ".7z")
                 BTN6.OnEvent("Click", Mode6)
+
+                BTN7 := MyGui.AddButton("x40 yp+25 w110 h40", md7)
+                BTN7.OnEvent("Click", Mode7)
+
+                global OriginalFileName := ControlGetText("Edit1", "ahk_exe 7zG.exe")
 
                 SetTimer main, 0    ;禁用计时器，防止7z界面刷新导致的无法点击
                 exit7z
@@ -121,52 +135,50 @@ exit7z()
 
 GetFilename()
 {
-    WinActivate "ahk_exe 7zG.exe"
     ControlFocus "Edit1", "ahk_exe 7zG.exe"
     global FullFileName, Ext, NameNoExt
     FullFileName := ControlGetText("Edit1", "ahk_exe 7zG.exe")
     SplitPath FullFileName, , , &Ext, &NameNoExt
-    Return
 }
 
 Mode1(*)
 {
     GetFilename
     Send A_YYYY "-" A_MM "-" A_DD "_" FullFileName
-    return
 }
 
 Mode2(*)
 {
     GetFilename
     Send A_YYYY A_MM A_DD "_" FullFileName
-    return
 }
 
 Mode3(*)
 {
     GetFilename
     Send NameNoExt "_" A_YYYY "-" A_MM "-" A_DD "." Ext
-    return
 }
 
 Mode4(*)
 {
     GetFilename
     Send NameNoExt "_" A_YYYY A_MM A_DD "." Ext
-    return
 }
 
 Mode5(*)
 {
     GetFilename
     Send NameNoExt "_" A_YYYY "-" A_MM "-" A_DD "_" A_Hour A_Min A_Sec "." Ext
-    return
 }
 
 Mode6(*)
 {
     GetFilename
     Send NameNoExt "_" A_YYYY A_MM A_DD "_" A_Hour A_Min A_Sec "." Ext
-    return
+}
+
+Mode7(*)
+{
+    ControlFocus "Edit1", "ahk_exe 7zG.exe"
+    Send OriginalFileName
 }
