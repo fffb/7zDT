@@ -8,6 +8,10 @@ For a long time, 7-Zip lacks the ability to add date/time to the archive's filen
 ![image](https://github.com/fffb/7zDT/blob/main/screenshot.jpg)
 
 ## Changelog 更新记录  
+2023-02-15 v1.1.1  (AHK v2)
+> - Fixed: 7zDT will no longer be displayed together with the "Compressing" window.   
+> 修复了 7zDT 在“正在压缩”界面也显示的问题  
+  
 2023-02-05 v1.1.0  (AHK v2)  
 >1. A new button has been added to help you revert to the original file name.  
 增加了一个按钮，以便恢复原文件名。  

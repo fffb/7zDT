@@ -1,4 +1,5 @@
-﻿;2023-02-05 v1.1.0
+﻿;2023-02-15 v1.1.1
+;https://github.com/fffb/7zDT
 
 #SingleInstance Force
 ;;;;;;;;;;;;;;;;;;;;;;;;;多语言支持
@@ -78,7 +79,8 @@ main()
 {
     if WinExist("ahk_exe 7zG.exe")
     {
-        try if ControlGetEnabled("Edit1", WinGetTitle("ahk_exe 7zG.exe")) = 1    ;检测窗口是否包含 Edit1 控件，防止在“基准测试”等窗口也弹出
+        global ATA := WinGetTitle("ahk_exe 7zG.exe")
+        try if ControlGetEnabled("Edit1", ATA) = 1    ;检测窗口是否包含 Edit1 控件，防止在“基准测试”等窗口也弹出
             {
                 WinGetPos &Xpos, &Ypos, &W7z    ;获取7z压缩界面的屏幕位置和窗口宽度
                 Xpos2 := Xpos + W7z    ;横坐标设为7z压缩界面的最右边
@@ -114,7 +116,7 @@ main()
                 BTN7 := MyGui.AddButton("x40 yp+25 w110 h40", md7)
                 BTN7.OnEvent("Click", Mode7)
 
-                global OriginalFileName := ControlGetText("Edit1", "ahk_exe 7zG.exe")
+                global OriginalFileName := ControlGetText("Edit1", ATA)
 
                 SetTimer main, 0    ;禁用计时器，防止7z界面刷新导致的无法点击
                 exit7z
@@ -125,7 +127,7 @@ main()
 exit7z()
 {
     SetTimer exit7z
-    if not WinExist("ahk_exe 7zG.exe")
+    if not WinExist(ATA)
     {
         MyGui.Destroy()
         SetTimer exit7z, 0
@@ -135,9 +137,9 @@ exit7z()
 
 GetFilename()
 {
-    ControlFocus "Edit1", "ahk_exe 7zG.exe"
+    ControlFocus "Edit1", ATA
     global FullFileName, Ext, NameNoExt
-    FullFileName := ControlGetText("Edit1", "ahk_exe 7zG.exe")
+    FullFileName := ControlGetText("Edit1", ATA)
     SplitPath FullFileName, , , &Ext, &NameNoExt
 }
 
@@ -179,6 +181,6 @@ Mode6(*)
 
 Mode7(*)
 {
-    ControlFocus "Edit1", "ahk_exe 7zG.exe"
+    ControlFocus "Edit1", ATA
     Send OriginalFileName
 }
