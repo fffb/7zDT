@@ -8,6 +8,10 @@ For a long time, 7-Zip lacks the ability to add date/time to the archive's filen
 ![image](https://github.com/fffb/7zDT/blob/main/screenshot.jpg)
 
 ## Changelog 更新记录  
+2023-10-15 v1.2.0  (AHK v2)
+> - 7zDT will now move along with the 7-Zip "Add to Archive" window.   
+> 如果 7-Zip “添加到压缩包”窗口发生位移，7zDT 也会自动跟随移动位置  
+
 2023-10-14 v1.1.2  (AHK v2)
 > - Interface Optimization.   
 > 界面优化  

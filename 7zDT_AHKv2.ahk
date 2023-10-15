@@ -1,4 +1,4 @@
-﻿;2023-10-14 v1.1.2
+﻿;2023-10-15 v1.2.0
 ;https://github.com/fffb/7zDT
 
 #SingleInstance Force
@@ -89,6 +89,8 @@ main()
         try if ControlGetEnabled("Edit1", ATA) = 1    ;检测窗口是否包含 Edit1 控件，防止在“基准测试”等窗口也弹出
         {
             WinGetPos &Xpos, &Ypos, &W7z    ;获取7z压缩界面的屏幕位置和窗口宽度
+            global XposOld := Xpos
+            global YposOld := Ypos
             Xpos2 := Xpos + W7z    ;横坐标设为7z压缩界面的最右边
 
             global MyGui := Gui("-SysMenu + ToolWindow", slct)    ;删除窗口左上角系统菜单和图标，及标题栏上的最小化最大化和关闭按钮，让窗口显示细标题栏, 同时去除任务栏按钮
@@ -127,20 +129,33 @@ main()
 
             global OriginalFileName := ControlGetText("Edit1", ATA)
             SetTimer main, 0    ;禁用计时器，防止7z界面刷新导致的无法点击
-            exit7z
+            WindowStatusChanged
         }
     }
 }
 
-exit7z()
+WindowStatusChanged()
 {
-    SetTimer exit7z
-    if not WinExist(ATA)
+    SetTimer WindowStatusChanged, 700
+    if WinExist(ATA)
     {
-        MyGui.Destroy()
-        SetTimer exit7z, 0
-        SetTimer main
+        WinGetPos &XposNew, &YposNew, , , ATA
+        if XposOld != XposNew or YposOld != YposNew
+        {
+            Back2Main
+        }
     }
+    else
+    {
+        Back2Main
+    }
+}
+
+Back2Main()
+{
+    MyGui.Destroy()
+    SetTimer WindowStatusChanged, 0
+    SetTimer main
 }
 
 GetFilename()
